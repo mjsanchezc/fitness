@@ -1,16 +1,11 @@
-# fitness
+# Fitness App
 
-A new Flutter project.
+Fitness app in Flutter to reinforce basics and expand knowledge in Dart and Flutter.
 
-## Getting Started
+## Sources
 
-This project is a starting point for a Flutter application.
+Resources for the app:
 
-A few resources to get you started if this is your first Flutter project:
+- [UI Design](https://www.figma.com/design/gyZvke9Pl3PiTneodQmFSZ/Fitnest---Fitness-App-UI-Kit-by-Pixel-True?node-id=206-281&t=79R45rrZaVRR3I3r-1)
+- [Original project repo](https://github.com/mahdinazmi/Flutter-Basics/tree/main)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
