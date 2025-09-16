@@ -1,21 +1,110 @@
+import 'package:fitness/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<CategoryModel> categories = [];
+
+  void _getCategories() {
+    categories = CategoryModel.getCategories();
+  }
+
+  @override
+  void initState() {
+    _getCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
+    _getCategories();
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      backgroundColor: Colors.white,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _searchField(),
+          SizedBox(
+            height: 30,
+          ),
+          _categoriesMethod()
         ],
       ),
     );
+  }
+
+  Column _categoriesMethod() {
+    return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Text(
+                'Category',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              height: 100,
+              child: ListView.separated(
+                itemCount: categories.length,
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(
+                  left: 30,
+                  right: 30
+                ),
+                separatorBuilder: (context, index) => SizedBox(width: 15,),
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 80,
+                    decoration: BoxDecoration(
+                      color: categories[index].boxColor.withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(16)
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset(categories[index].iconPath),
+                          ),
+                        ),
+                        Text(
+                          categories[index].name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 12
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        );
   }
 
   Container _searchField() {
@@ -66,7 +155,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none
               )
             ),
